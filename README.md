@@ -39,6 +39,10 @@ flowchart LR
 
 A aplicação evolui de forma incremental. Serviços de aplicação concentram casos de uso; testes automatizados e verificações arquiteturais ajudam a proteger contratos e fronteiras entre módulos.
 
+### Integrações resilientes
+
+Leituras externas usam retries seletivos para falhas transitórias. Operações que registram apontamentos não são repetidas automaticamente: cada envio reserva uma chave idempotente antes da chamada e resultados incertos exigem conferência no provedor antes de um novo envio. Isso mantém explícita a diferença entre falha confirmada e confirmação externa desconhecida.
+
 ## Segurança e auditoria
 
 O produto inclui autenticação baseada em cookies, proteção antiforgery, limitação de requisições e registros de auditoria. Este resumo não publica detalhes de configuração, rotas administrativas ou informações de infraestrutura.
