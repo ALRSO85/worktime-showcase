@@ -12,6 +12,10 @@ WorkTime é uma aplicação web para gestão e conciliação de horas. Reúne ap
 
 Consolidar apontamentos que chegam de fontes diferentes e dar suporte às rotinas de equipes, jornadas, férias e fechamentos, preservando histórico e rastreabilidade.
 
+## Minha contribuição
+
+Sou responsável pelo desenho, pela arquitetura e pela construção do produto.
+
 ## Abordagem
 
 O WorkTime reúne integrações e registros internos em fluxos de trabalho organizados por módulos. A separação entre apresentação, casos de uso, persistência e integrações permite evoluir cada área de forma incremental.
