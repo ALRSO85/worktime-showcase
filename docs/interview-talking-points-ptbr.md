@@ -32,6 +32,8 @@ Retries automáticos ficam limitados a falhas transitórias em `GET` e `HEAD`; a
 
 O estado `Unknown` preserva a incerteza em vez de transformar uma chamada ambígua em falha segura para reenvio. Isso reduz o risco de duplicidade causada por retry cego, mas exige conferência e reconciliação antes de uma nova escrita. A decisão privilegia correção e rastreabilidade sobre repetição automática indiscriminada.
 
+**Aprendizado técnico que o case evidencia:** uma reserva idempotente controla o fluxo local, mas não elimina a incerteza do sistema externo. Estados ambíguos precisam de reconciliação explícita antes de uma nova escrita.
+
 ### Resposta curta sugerida
 
 > No fluxo de integração, uma resposta ausente não prova que o provedor deixou de processar a solicitação. Por isso, reservamos a operação com uma chave idempotente antes do envio. Se o resultado for ambíguo, registramos `Unknown` e não repetimos a escrita automaticamente; primeiro é preciso conferir o estado no provedor. Mantemos retries transitórios para leituras `GET` e `HEAD`, cuja semântica é diferente. O ponto principal é modelar a incerteza explicitamente, sem afirmar entrega exatamente uma vez ou ganhos quantitativos que não medimos.
