@@ -20,7 +20,7 @@ O WorkTime reúne integrações e registros internos em fluxos de trabalho organ
 
 - **Aplicação:** ASP.NET Core MVC/Razor sobre .NET 10.
 - **Persistência:** Entity Framework Core e SQL Server.
-- **Hospedagem:** Ubuntu Server, com publicação da aplicação em container Docker.
+- **Infra e publicação:** aplicação em container Docker no Ubuntu Server, com Cloudflare Tunnel no caminho de acesso.
 - **Organização:** monólito modular, com fronteiras para áreas como identidade, apontamentos, integrações e notificações.
 - **Integrações:** Businessmap/Kanbanize para cartões e sincronização de apontamentos; Ahgora para consulta semanal e importação de horas.
 
