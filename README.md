@@ -72,4 +72,6 @@ O produto inclui autenticação baseada em cookies, proteção antiforgery, limi
 
 ## Escopo deste showcase
 
+Para preparar uma conversa técnica em português, consulte os [pontos de conversa para entrevista](docs/interview-talking-points-ptbr.md).
+
 Este documento descreve capacidades e decisões em nível de produto. Não inclui código-fonte, credenciais, dados de usuários, regras comerciais internas, topologia detalhada ou configurações operacionais privadas.
