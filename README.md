@@ -43,6 +43,29 @@ A aplicação evolui de forma incremental. Serviços de aplicação concentram c
 
 Leituras externas usam retries seletivos para falhas transitórias. Operações que registram apontamentos não são repetidas automaticamente: cada envio reserva uma chave idempotente antes da chamada e resultados incertos exigem conferência no provedor antes de um novo envio. Isso mantém explícita a diferença entre falha confirmada e confirmação externa desconhecida.
 
+```mermaid
+sequenceDiagram
+    participant App as WorkTime
+    participant DB as SQL Server
+    participant Provider as Provedor externo
+    App->>DB: Reservar chave estável como Pending
+    DB-->>App: Reserva confirmada
+    App->>Provider: Enviar apontamento uma vez
+    alt Sucesso confirmado
+        Provider-->>App: Resultado confirmado
+        App->>DB: Persistir estado, tentativa, log de sincronização e auditoria
+    else Falha confirmada
+        Provider-->>App: Falha confirmada
+        App->>DB: Marcar tentativa como Failed
+    else Resultado incerto
+        Provider--x App: Resposta ausente ou ambígua
+        App->>DB: Marcar tentativa como Unknown
+        Note over App,Provider: Não reenviar automaticamente. Verificar o provedor e reconciliar antes de novo envio
+    end
+```
+
+Retries automáticos se limitam a `GET` e `HEAD` transitórios; requisições de escrita ficam fora da política compartilhada.
+
 ## Segurança e auditoria
 
 O produto inclui autenticação baseada em cookies, proteção antiforgery, limitação de requisições e registros de auditoria. Este resumo não publica detalhes de configuração, rotas administrativas ou informações de infraestrutura.
