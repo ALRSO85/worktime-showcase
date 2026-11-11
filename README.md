@@ -1,32 +1,14 @@
-# WorkTime — showcase técnico
-
-> Visão pública e sanitizada do produto. O código-fonte, configurações internas e dados operacionais não fazem parte deste material.
+# WorkTime — visão técnica
 
 ## Visão geral
 
-WorkTime é uma aplicação web para gestão e conciliação de horas. Reúne apontamentos internos, dados do Businessmap/Kanbanize e importações do Ahgora em fluxos de trabalho com jornadas, equipes, fechamentos, férias, relatórios e auditoria.
+WorkTime é uma aplicação web para gestão e conciliação de horas. Reúne apontamentos internos, dados do Businessmap/Kanbanize e importações do Ahgora em fluxos de trabalho com jornadas, equipes, fechamentos, férias, relatórios e auditoria. Sou responsável pelo desenho, pela arquitetura e pela construção do produto.
 
 [Acessar a aplicação WorkTime](https://worktime.devforyou.com.br/account/login) — o acesso às áreas operacionais requer uma conta autorizada.
 
-## Desafio de produto
+## Arquitetura
 
-Consolidar apontamentos que chegam de fontes diferentes e dar suporte às rotinas de equipes, jornadas, férias e fechamentos, preservando histórico e rastreabilidade.
-
-## Minha contribuição
-
-Sou responsável pelo desenho, pela arquitetura e pela construção do produto.
-
-## Abordagem
-
-O WorkTime reúne integrações e registros internos em fluxos de trabalho organizados por módulos. A separação entre apresentação, casos de uso, persistência e integrações permite evoluir cada área de forma incremental.
-
-## Arquitetura em alto nível
-
-- **Aplicação:** ASP.NET Core MVC/Razor sobre .NET 10.
-- **Persistência:** Entity Framework Core e SQL Server.
-- **Infra e publicação:** aplicação em container Docker no Ubuntu Server, com Cloudflare Tunnel no caminho de acesso.
-- **Organização:** monólito modular, com fronteiras para áreas como identidade, apontamentos, integrações e notificações.
-- **Integrações:** Businessmap/Kanbanize para cartões e sincronização de apontamentos; Ahgora para consulta semanal e importação de horas.
+A aplicação usa ASP.NET Core MVC com Razor sobre .NET 10, Entity Framework Core e SQL Server. É publicada em container Docker no Ubuntu Server e acessada por Cloudflare Tunnel. O monólito é organizado em módulos, incluindo identidade, apontamentos, integrações e notificações. Businessmap/Kanbanize fornece cartões e sincronização de apontamentos; o Ahgora é usado para consulta semanal e importação de horas.
 
 ```mermaid
 flowchart LR
@@ -70,8 +52,6 @@ Retries automáticos se limitam a `GET` e `HEAD` transitórios; requisições de
 
 O produto inclui autenticação baseada em cookies, proteção antiforgery, limitação de requisições e registros de auditoria. Este resumo não publica detalhes de configuração, rotas administrativas ou informações de infraestrutura.
 
-## Escopo deste showcase
+## Sobre este repositório
 
-Para preparar uma conversa técnica em português, consulte os [pontos de conversa para entrevista](docs/interview-talking-points-ptbr.md).
-
-Este documento descreve capacidades e decisões em nível de produto. Não inclui código-fonte, credenciais, dados de usuários, regras comerciais internas, topologia detalhada ou configurações operacionais privadas.
+Este repositório apresenta decisões técnicas em nível de produto. Não contém o código-fonte completo nem dados ou configurações operacionais privadas.
